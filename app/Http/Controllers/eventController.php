@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -12,7 +13,12 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all(); // Mengambil semua event dari database
+        $userId = Auth::id(); // Ambil ID pengguna yang sedang login
+        if (!$userId) {
+            abort(403, 'Anda belum login!');
+        }
+
+        $events = Event::where('user_id', $userId)->get();
         return view('eventOrganizer.events.index', compact('events'));
     }
 
@@ -46,6 +52,8 @@ class EventController extends Controller
             $request->file('thumbnail')->move(public_path('thumbnails'), $thumbnailName);
             $validated['thumbnail'] = $thumbnailPath;
         }
+        
+        $validated['user_id'] = Auth::id();
 
         Event::create($validated);
 
