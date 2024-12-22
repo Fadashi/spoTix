@@ -74,6 +74,10 @@
     <div class="sidebar">
         <div class="d-grid gap-2">
             <a href="{{ route('eventOrganizer.events.create') }}" class="btn btn-primary">+ Event Baru</a>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="btn btn-danger">Log Out</button>
+            </form>
         </div>
         <nav class="nav flex-column">
             <a class="nav-link" href="{{ route('eventOrganizer.dashboard') }}">

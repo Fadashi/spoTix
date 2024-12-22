@@ -139,7 +139,7 @@
             <!-- Buttons -->
             <div class="d-flex">
                 <a href="{{ route('login') }}" class="btn btn-outline-light me-2">Masuk</a>
-                <a href="{{ route('register') }}" class="btn btn-light text-dark">Daftar</a>
+                <a href="{{ route('chooseRegister') }}" class="btn btn-light text-dark">Daftar</a>
             </div>
         </div>
     </div>

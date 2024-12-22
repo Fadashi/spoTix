@@ -56,4 +56,8 @@ Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
     Route::get('/dashboard',[UserController::class,'index'])->name('user.dashboard');
 });
 
+Route::get('/choose-register', function () {
+    return view('auth.chooseRegister');
+})->name('chooseRegister');
+
 require __DIR__.'/auth.php';
