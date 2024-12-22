@@ -29,7 +29,6 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi data input
         $validated = $request->validate([
             'thumbnail' => 'required|image|mimes:jpg,jpeg,png|max:2048',
             'name' => 'required|string|max:255',
@@ -40,16 +39,19 @@ class EventController extends Controller
             'price' => 'required|numeric|min:0',
         ]);
 
-        // Upload gambar thumbnail
-        $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
-        $validated['thumbnail'] = $thumbnailPath;
+        // Upload thumbnail
+        if ($request->hasFile('thumbnail')) {
+            $thumbnailName = time() . '-' . $request->file('thumbnail')->getClientOriginalName();
+            $thumbnailPath = 'thumbnails/' . time() . '-' . $request->file('thumbnail')->getClientOriginalName();
+            $request->file('thumbnail')->move(public_path('thumbnails'), $thumbnailName);
+            $validated['thumbnail'] = $thumbnailPath;
+        }
 
-        // Simpan data ke database
         Event::create($validated);
 
-        // Redirect dengan pesan sukses
         return redirect()->route('eventOrganizer.events.index')->with('success', 'Event berhasil dibuat!');
     }
+
 
     /**
      * Display the specified event.
@@ -87,10 +89,17 @@ class EventController extends Controller
 
         $event = Event::findOrFail($id);
 
-        // Update gambar jika ada file baru
+        // Jika ada file baru, hapus file lama dan unggah yang baru
         if ($request->hasFile('thumbnail')) {
-            $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
-            $validated['thumbnail'] = $thumbnailPath;
+            // Hapus file lama jika ada
+            if ($event->thumbnail && file_exists(public_path($event->thumbnail))) {
+                unlink(public_path($event->thumbnail));
+            }
+
+            // Unggah file baru
+            $thumbnailName = time() . '-' . $request->file('thumbnail')->getClientOriginalName();
+            $thumbnailPath = $request->file('thumbnail')->move(public_path('thumbnails'), $thumbnailName);
+            $validated['thumbnail'] = 'thumbnails/' . $thumbnailName; // Path relatif yang disimpan ke database
         }
 
         // Update data event
@@ -100,12 +109,13 @@ class EventController extends Controller
         return redirect()->route('eventOrganizer.events.index')->with('success', 'Event berhasil diupdate!');
     }
 
-    /**
-     * Remove the specified event from storage.
-     */
     public function destroy($id)
     {
         $event = Event::findOrFail($id);
+
+        if ($event->thumbnail && file_exists(public_path($event->thumbnail))) {
+            unlink(public_path($event->thumbnail));
+        }
 
         // Hapus data event
         $event->delete();

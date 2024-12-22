@@ -27,7 +27,7 @@
             <small class="text-muted">Biarkan kosong jika tidak ingin mengganti gambar.</small>
             @if ($event->thumbnail)
                 <div class="mt-2">
-                    <img src="{{ asset('storage/' . $event->thumbnail) }}" alt="Thumbnail" class="img-thumbnail" style="width: 150px;">
+                    <img src="{{ asset($event->thumbnail) }}" alt="Thumbnail" class="img-thumbnail" style="width: 100px;">
                 </div>
             @endif
         </div>
