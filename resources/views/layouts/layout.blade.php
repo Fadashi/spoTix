@@ -169,6 +169,64 @@
             color: #001f54;
             font-size: 1.2rem;
         }
+        
+        /* Styling carousel slide background */
+        .custom-slide {
+            height: 400px;
+            background: linear-gradient(135deg, #4A90E2, #9013FE);
+            border-radius: 10px;
+            color: #fff;
+        }
+
+        /* Custom carousel indicators */
+        .carousel-indicators button {
+            background-color: #FF6F61;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+        }
+
+        .carousel-indicators .active {
+            background-color: #FFAA00;
+            transform: scale(1.3);
+        }
+
+        /* Custom carousel controls */
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            padding: 10px;
+            width: 40px;
+            height: 40px;
+            filter: invert(1);
+        }
+
+        .modern-buttons .carousel-control-prev,
+        .modern-buttons .carousel-control-next {
+            background-color: #FFFFFF;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .modern-buttons .carousel-control-prev:hover,
+        .modern-buttons .carousel-control-next:hover {
+            background-color: #FF6F61;
+        }
+
+        .modern-buttons .carousel-control-prev-icon,
+        .modern-buttons .carousel-control-next-icon {
+            filter: none;
+            background-size: 20px;
+        }
+
     </style>
 </head>
 
