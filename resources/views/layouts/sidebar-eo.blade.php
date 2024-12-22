@@ -16,34 +16,45 @@
 
         /* Sidebar styles */
         .sidebar {
-            background-color: #001f54;
-            color: white;
-            height: 100vh;
-            padding-top: 20px;
-            position: fixed;
-            width: 250px;
-        }
+        background-color: #001f54;
+        color: white;
+        height: 100vh;
+        padding-top: 20px;
+        position: fixed;
+        width: 250px;
+    }
 
-        .sidebar .nav-link {
-            color: white;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-        }
+    .sidebar .nav-link {
+        color: white;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+    }
 
-        .sidebar .nav-link:hover {
-            background-color: #003b8e;
-            text-decoration: none;
-        }
+    .sidebar .nav-link:hover {
+        background-color: #003b8e;
+        text-decoration: none;
+    }
 
-        .sidebar .nav-link .bi {
-            margin-right: 10px;
-        }
+    .sidebar .nav-link .bi {
+        margin-right: 10px;
+    }
 
-        .sidebar .btn {
-            width: 90%;
-            margin: 10px auto;
-        }
+    .sidebar .btn {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    .logout-btn {
+        position: absolute;
+        bottom: 20px;
+        width: 90%;
+        left: 5%;
+    }
+
+    .logout-btn:hover {
+        background-color: #b22222 !important;
+    }
 
         /* Content styles */
         .content {
@@ -74,10 +85,6 @@
     <div class="sidebar">
         <div class="d-grid gap-2">
             <a href="{{ route('eventOrganizer.events.create') }}" class="btn btn-primary">+ Event Baru</a>
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit" class="btn btn-danger">Log Out</button>
-            </form>
         </div>
         <nav class="nav flex-column">
             <a class="nav-link" href="{{ route('eventOrganizer.dashboard') }}">
@@ -90,6 +97,10 @@
                 <i class="bi bi-file-bar-graph"></i> Report
             </a>
         </nav>
+        <form method="POST" action="{{ route('logout') }}" class="logout-btn">
+            @csrf
+            <button type="submit" class="btn btn-danger">Log Out</button>
+        </form>
     </div>
 
     <!-- Content -->
