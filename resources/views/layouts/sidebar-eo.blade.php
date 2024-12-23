@@ -16,45 +16,48 @@
 
         /* Sidebar styles */
         .sidebar {
-        background-color: #001f54;
-        color: white;
-        height: 100vh;
-        padding-top: 20px;
-        position: fixed;
-        width: 250px;
-    }
+            background-color: #001f54;
+            color: white;
+            height: 100vh;
+            padding-top: 20px;
+            position: fixed;
+            width: 250px;
+        }
 
-    .sidebar .nav-link {
-        color: white;
-        padding: 15px;
-        display: flex;
-        align-items: center;
-    }
+        .sidebar .nav-link {
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
 
-    .sidebar .nav-link:hover {
-        background-color: #003b8e;
-        text-decoration: none;
-    }
+        .sidebar .nav-link:hover {
+            background-color: #003b8e;
+            text-decoration: none;
+        }
 
-    .sidebar .nav-link .bi {
-        margin-right: 10px;
-    }
+        .sidebar .nav-link .bi {
+            margin-right: 10px;
+        }
 
-    .sidebar .btn {
-        width: 90%;
-        margin: 10px auto;
-    }
+        .sidebar .btn {
+            width: 90%;
+            margin: 10px auto;
+        }
 
-    .logout-btn {
-        position: absolute;
-        bottom: 20px;
-        width: 90%;
-        left: 5%;
-    }
+        /* Logout button styles */
+        .logout-btn {
+            position: absolute;
+            bottom: 20px;
+            width: 90%;
+            left: 5%;
+        }
 
-    .logout-btn:hover {
-        background-color: #b22222 !important;
-    }
+        .logout-btn button:hover {
+            background-color: #b22222 !important; /* Merah tua saat hover */
+            border-color: #b22222 !important;
+            color: white; /* Teks putih */
+        }
 
         /* Content styles */
         .content {

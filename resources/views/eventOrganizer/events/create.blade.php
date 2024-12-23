@@ -44,6 +44,11 @@
             <input type="number" name="price" id="price" class="form-control" required>
         </div>
 
+        <div class="mb-3">
+            <label for="capacity" class="form-label">Kapasitas Penonton</label>
+            <input type="number" class="form-control" id="capacity" name="capacity" value="{{ old('capacity') }}" min="1" required>
+        </div>
+
         <button type="submit" class="btn btn-success">Buat Event</button>
     </form>
 </div>

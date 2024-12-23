@@ -50,121 +50,42 @@
     <h3 class="section-title">Event Terdekat</h3>
     <div id="eventTerdekatCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-            <!-- First Carousel Item with 4 Cards -->
-            <div class="carousel-item active">
-                <div class="row row-cols-1 row-cols-md-4 g-4">
-                    <div class="col">
-                        <div class="card event-card shadow-sm">
-                            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Event Image">
-                            <div class="card-body">
-                                <h5 class="card-title">Cultural Night</h5>
-                                <div class="d-flex align-items-center">
-                                    <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                                    <span>Yogyakarta</span>
-                                </div>
-                                <div class="d-flex align-items-center mt-2">
-                                    <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                                    <span>20 Januari 2025</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <span class="fw-bold text-orange">Rp 40.000</span>
-                                    <span class="badge bg-danger">Sold Out</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Repeat for other events in the first group -->
-                    <div class="col">
-                        <div class="card event-card shadow-sm">
-                            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Event Image">
-                            <div class="card-body">
-                                <h5 class="card-title">Music Fest</h5>
-                                <div class="d-flex align-items-center">
-                                    <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                                    <span>Surabaya</span>
-                                </div>
-                                <div class="d-flex align-items-center mt-2">
-                                    <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                                    <span>22 Februari 2025</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <span class="fw-bold text-orange">Rp 60.000</span>
-                                    <span class="badge bg-success">Available</span>
+            @foreach ($eventTerdekat->chunk(4) as $chunkIndex => $eventsChunk)
+                <div class="carousel-item {{ $chunkIndex === 0 ? 'active' : '' }}">
+                    <div class="row row-cols-1 row-cols-md-4 g-4">
+                        @foreach ($eventsChunk as $event)
+                            <div class="col">
+                                <div class="card event-card shadow-sm">
+                                    <img 
+                                        src="{{ asset($event->thumbnail ?? 'https://via.placeholder.com/300x200') }}" 
+                                        class="card-img-top" 
+                                        alt="{{ $event->name }}"
+                                    >
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ $event->name }}</h5>
+                                        <div class="d-flex align-items-center">
+                                            <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
+                                            <span>{{ $event->location }}</span>
+                                        </div>
+                                        <div class="d-flex align-items-center mt-2">
+                                            <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
+                                            <span>{{ \Carbon\Carbon::parse($event->date)->format('d F Y') }}</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <span class="fw-bold text-orange">Rp {{ number_format($event->price, 0, ',', '.') }}</span>
+                                            @if ($event->is_sold_out)
+                                                <span class="badge bg-danger">Sold Out</span>
+                                            @else
+                                                <span class="badge bg-success">Available</span>
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card event-card shadow-sm">
-                            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Event Image">
-                            <div class="card-body">
-                                <h5 class="card-title">Tech Expo</h5>
-                                <div class="d-flex align-items-center">
-                                    <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                                    <span>Jakarta</span>
-                                </div>
-                                <div class="d-flex align-items-center mt-2">
-                                    <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                                    <span>30 Januari 2025</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <span class="fw-bold text-orange">Rp 100.000</span>
-                                    <span class="badge bg-danger">Sold Out</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card event-card shadow-sm">
-                            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Event Image">
-                            <div class="card-body">
-                                <h5 class="card-title">Startup Meet</h5>
-                                <div class="d-flex align-items-center">
-                                    <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                                    <span>Bandung</span>
-                                </div>
-                                <div class="d-flex align-items-center mt-2">
-                                    <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                                    <span>5 Maret 2025</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <span class="fw-bold text-orange">Rp 25.000</span>
-                                    <span class="badge bg-success">Available</span>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
-            </div>
-            
-            <!-- Add more carousel items as needed, grouping every 4 events in each item -->
-            <div class="carousel-item">
-                <div class="row row-cols-1 row-cols-md-4 g-4">
-                    <!-- Repeat event cards here (card 5 to card 8) -->
-                    <div class="col">
-                        <div class="card event-card shadow-sm">
-                            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Event Image">
-                            <div class="card-body">
-                                <h5 class="card-title">Event 5</h5>
-                                <div class="d-flex align-items-center">
-                                    <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                                    <span>Location</span>
-                                </div>
-                                <div class="d-flex align-items-center mt-2">
-                                    <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                                    <span>8 April 2025</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <span class="fw-bold text-orange">Rp 50.000</span>
-                                    <span class="badge bg-success">Available</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Repeat for more events -->
-                </div>
-            </div>
-            <!-- Continue adding more items if necessary -->
+            @endforeach
         </div>
 
         <!-- Carousel Controls -->
@@ -178,6 +99,7 @@
         </button>
     </div>
 </div>
+
 
 
 <!-- Rekomendasi Event Slider -->
@@ -296,176 +218,38 @@
 <div class="container my-5">
     <h3 class="section-title">Semua Event</h3>
     <div class="row row-cols-1 row-cols-md-4 g-4">
-        <div class="col">
-            <div class="card event-card shadow-sm">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Event Image">
-                <div class="card-body">
-                    <h5 class="card-title">Tech Expo</h5>
-                    <div class="d-flex align-items-center">
-                        <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                        <span>Jakarta</span>
-                    </div>
-                    <div class="d-flex align-items-center mt-2">
-                        <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                        <span>30 Januari 2025</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mt-3">
-                        <span class="fw-bold text-orange">Rp 100.000</span>
-                        <span class="badge bg-danger">Sold Out</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Repeat for other events -->
-        <div class="col">
-            <div class="card event-card shadow-sm">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Event Image">
-                <div class="card-body">
-                    <h5 class="card-title">Tech Expo</h5>
-                    <div class="d-flex align-items-center">
-                        <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                        <span>Jakarta</span>
-                    </div>
-                    <div class="d-flex align-items-center mt-2">
-                        <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                        <span>30 Januari 2025</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mt-3">
-                        <span class="fw-bold text-orange">Rp 100.000</span>
-                        <span class="badge bg-danger">Sold Out</span>
+        @forelse ($allEvents as $event)
+            <div class="col">
+                <div class="card event-card shadow-sm">
+                    <img 
+                        src="{{ asset($event->thumbnail ?? 'https://via.placeholder.com/300x200') }}" 
+                        class="card-img-top" 
+                        alt="{{ $event->name }}"
+                    >
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $event->name }}</h5>
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
+                            <span>{{ $event->location }}</span>
+                        </div>
+                        <div class="d-flex align-items-center mt-2">
+                            <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
+                            <span>{{ \Carbon\Carbon::parse($event->date)->format('d F Y') }}</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <span class="fw-bold text-orange">Rp {{ number_format($event->price, 0, ',', '.') }}</span>
+                            <span class="badge {{ $event->capacity > 0 ? 'bg-success' : 'bg-danger' }}">
+                                {{ $event->capacity > 0 ? 'Available' : 'Sold Out' }}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Repeat for other events -->
-        <div class="col">
-            <div class="card event-card shadow-sm">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Event Image">
-                <div class="card-body">
-                    <h5 class="card-title">Tech Expo</h5>
-                    <div class="d-flex align-items-center">
-                        <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                        <span>Jakarta</span>
-                    </div>
-                    <div class="d-flex align-items-center mt-2">
-                        <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                        <span>30 Januari 2025</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mt-3">
-                        <span class="fw-bold text-orange">Rp 100.000</span>
-                        <span class="badge bg-danger">Sold Out</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Repeat for other events -->
-        <div class="col">
-            <div class="card event-card shadow-sm">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Event Image">
-                <div class="card-body">
-                    <h5 class="card-title">Tech Expo</h5>
-                    <div class="d-flex align-items-center">
-                        <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                        <span>Jakarta</span>
-                    </div>
-                    <div class="d-flex align-items-center mt-2">
-                        <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                        <span>30 Januari 2025</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mt-3">
-                        <span class="fw-bold text-orange">Rp 100.000</span>
-                        <span class="badge bg-danger">Sold Out</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Repeat for other events -->
-        <div class="col">
-            <div class="card event-card shadow-sm">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Event Image">
-                <div class="card-body">
-                    <h5 class="card-title">Tech Expo</h5>
-                    <div class="d-flex align-items-center">
-                        <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                        <span>Jakarta</span>
-                    </div>
-                    <div class="d-flex align-items-center mt-2">
-                        <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                        <span>30 Januari 2025</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mt-3">
-                        <span class="fw-bold text-orange">Rp 100.000</span>
-                        <span class="badge bg-danger">Sold Out</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Repeat for other events -->
-        <div class="col">
-            <div class="card event-card shadow-sm">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Event Image">
-                <div class="card-body">
-                    <h5 class="card-title">Tech Expo</h5>
-                    <div class="d-flex align-items-center">
-                        <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                        <span>Jakarta</span>
-                    </div>
-                    <div class="d-flex align-items-center mt-2">
-                        <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                        <span>30 Januari 2025</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mt-3">
-                        <span class="fw-bold text-orange">Rp 100.000</span>
-                        <span class="badge bg-danger">Sold Out</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Repeat for other events -->
-        <div class="col">
-            <div class="card event-card shadow-sm">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Event Image">
-                <div class="card-body">
-                    <h5 class="card-title">Tech Expo</h5>
-                    <div class="d-flex align-items-center">
-                        <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                        <span>Jakarta</span>
-                    </div>
-                    <div class="d-flex align-items-center mt-2">
-                        <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                        <span>30 Januari 2025</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mt-3">
-                        <span class="fw-bold text-orange">Rp 100.000</span>
-                        <span class="badge bg-danger">Sold Out</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Repeat for other events -->
-        <div class="col">
-            <div class="card event-card shadow-sm">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Event Image">
-                <div class="card-body">
-                    <h5 class="card-title">Tech Expo</h5>
-                    <div class="d-flex align-items-center">
-                        <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                        <span>Jakarta</span>
-                    </div>
-                    <div class="d-flex align-items-center mt-2">
-                        <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                        <span>30 Januari 2025</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mt-3">
-                        <span class="fw-bold text-orange">Rp 100.000</span>
-                        <span class="badge bg-danger">Sold Out</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Repeat for other events -->
+        @empty
+            <p class="text-center">Belum ada event yang tersedia.</p>
+        @endforelse
     </div>
-    
+
     <!-- Button "Lihat Semua" -->
     <div class="container my-5">
         <div class="text-end mt-3">

@@ -58,6 +58,11 @@
         </div>
 
         <div class="mb-3">
+            <label for="capacity" class="form-label">Kapasitas Penonton</label>
+            <input type="number" class="form-control" id="capacity" name="capacity" value="{{ old('capacity', $event->capacity) }}" required>
+        </div>
+
+        <div class="mb-3">
             <label for="price" class="form-label">Harga Event</label>
             <input type="number" name="price" id="price" class="form-control" value="{{ old('price', $event->price) }}" required>
         </div>

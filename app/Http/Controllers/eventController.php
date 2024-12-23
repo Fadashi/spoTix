@@ -42,6 +42,7 @@ class EventController extends Controller
             'category' => 'required|string',
             'date' => 'required|date',
             'location' => 'required|string|max:255',
+            'capacity' => 'required|integer|min:1',
             'price' => 'required|numeric|min:0',
         ]);
 
@@ -92,6 +93,7 @@ class EventController extends Controller
             'category' => 'required|string',
             'date' => 'required|date',
             'location' => 'required|string|max:255',
+            'capacity' => 'required|integer|min:1',
             'price' => 'required|numeric|min:0',
         ]);
 
