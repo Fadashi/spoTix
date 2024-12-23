@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\Event;
 
 class UserController extends Controller
 {
@@ -11,7 +13,26 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.dashboard');
+        // Ambil event dengan tanggal terdekat (tanggal >= hari ini)
+        $startDate = Carbon::now(); // Hari ini
+        $endDate = Carbon::now()->addMonth(); // Satu bulan ke depan
+
+        $eventTerdekat = Event::whereBetween('date', [$startDate, $endDate])
+            ->orderBy('date', 'asc')
+            ->limit(8)
+            ->get();
+
+        // Ambil event rekomendasi (misalnya berdasarkan rating atau kategori tertentu)
+        // $rekomendasiEvent = Event::where('rekomendasi', true) // Asumsikan ada field 'rekomendasi' di tabel Event
+        //     ->orderBy('created_at', 'desc') // Tampilkan rekomendasi terbaru
+        //     ->limit(8) // Batasi jumlah event rekomendasi
+        //     ->get();
+
+        // Ambil semua event
+        $allEvents = Event::orderBy('date', 'asc')->get();
+
+        // Kirim data ke view
+        return view('user.dashboard', compact('eventTerdekat', 'allEvents'));
     }
 
     /**
