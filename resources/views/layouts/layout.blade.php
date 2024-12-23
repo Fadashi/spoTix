@@ -145,6 +145,22 @@
             color: #001f54;
         }
 
+        .btn-secondary-custom {
+            background-color: #ff2121;
+            border-color: #ff2121;
+            color: white;
+            padding: 10px 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 50px;
+        }
+
+        .btn-secondary-custom:hover {
+            background-color: #b20000;
+            border-color: #b20000;
+            color: #ffffff;
+        }
+
         /* Improved background color for the "Rekomendasi Event" section */
         .rekomendasi-event {
             background: linear-gradient(to right, #001f54, #003366);

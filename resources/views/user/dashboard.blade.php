@@ -55,6 +55,7 @@
                     <div class="row row-cols-1 row-cols-md-4 g-4">
                         @foreach ($eventsChunk as $event)
                             <div class="col">
+                                <a href="{{ route('user.show', $event->id) }}" class="text-decoration-none text-dark">
                                 <div class="card event-card shadow-sm">
                                     <img 
                                         src="{{ asset($event->thumbnail ?? 'https://via.placeholder.com/300x200') }}" 
@@ -81,6 +82,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </a>
                             </div>
                         @endforeach
                     </div>
@@ -220,7 +222,9 @@
     <div class="row row-cols-1 row-cols-md-4 g-4">
         @forelse ($allEvents as $event)
             <div class="col">
+                <a href="{{ route('user.show', $event->id) }}" class="text-decoration-none text-dark">
                 <div class="card event-card shadow-sm">
+                    
                     <img 
                         src="{{ asset($event->thumbnail ?? 'https://via.placeholder.com/300x200') }}" 
                         class="card-img-top" 
@@ -244,6 +248,7 @@
                         </div>
                     </div>
                 </div>
+            </a>
             </div>
         @empty
             <p class="text-center">Belum ada event yang tersedia.</p>

@@ -22,7 +22,7 @@ Route::get('/', function () {
         }
     }
     // Jika pengguna belum login, arahkan ke halaman login
-    return view('welcome');
+    return app(UserController::class)->welcome();
 })->name('dashboard');
 
 Route::get('/admin/dashboard', [AdminController::class, 'index'])
@@ -54,6 +54,7 @@ Route::prefix('eventOrganizer')->middleware(['auth', 'eventOrganizer'])->group(f
 Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
     //dashboard user
     Route::get('/dashboard',[UserController::class,'index'])->name('user.dashboard');
+    Route::get('/events/{id}', [EventController::class, 'show_event'])->name('user.show');
 });
 
 Route::get('/choose-register', function () {
