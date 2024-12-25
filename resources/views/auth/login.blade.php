@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - SpoTix</title>
+    <title>User Login - SpoTix</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -129,7 +129,7 @@
     <div id="auth">
         <div class="login-container">
             <div class="auth-logo">spoTix</div>
-            <h1 class="auth-title">Log in.</h1>
+            <h1 class="auth-title">Log in User</h1>
             <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
 
             <form method="POST" action="{{ route('login') }}">

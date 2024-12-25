@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->foreignId('event_id')->constrained()->onDelete('cascade'); // Relasi ke tabel events
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Relasi ke tabel users
             $table->integer('quantity'); // Jumlah tiket
-            $table->decimal('total_price', 10, 2); // Total harga
+            $table->double('total_price'); // Total harga
             $table->timestamps();
         });
     }
