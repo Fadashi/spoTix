@@ -9,20 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::table('events', function (Blueprint $table) {
-            //
+            $table->integer('available_tickets')->after('total_tickets')->default(0);
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    
+    public function down()
     {
         Schema::table('events', function (Blueprint $table) {
-            //
+            $table->dropColumn('available_tickets');
         });
     }
 };

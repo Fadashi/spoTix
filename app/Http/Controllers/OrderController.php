@@ -19,6 +19,13 @@ class OrderController extends Controller
             'quantity' => 'required|integer|min:1|max:5',
         ]);
 
+        $event = Event::findOrFail($validated['event_id']);
+
+    // Cek ketersediaan tiket
+        if ($event->available_tickets < $validated['quantity']) {
+            return redirect()->back()->with('error', 'Tiket tidak cukup tersedia!');
+        }
+
         // Simpan pesanan
         $order = new Order();
         $order->event_id = $validated['event_id'];
@@ -84,8 +91,15 @@ class OrderController extends Controller
         $orderIdParts = explode('-', $notification->order_id); // Memisahkan ID asli
         $order = Order::find($orderIdParts[0]);
         if ($order) {
-            $order->status = $notification->transaction_status; // capture, settlement, etc.
-            $order->save();
+            if ($notification->transaction_status === 'capture' || $notification->transaction_status === 'settlement') {
+                $order->status = 'paid';
+                $order->save();
+    
+                // Kurangi tiket
+                $event = $order->event;
+                $event->available_tickets -= $order->quantity;
+                $event->save();
+            }
         }
 
         return response()->json(['message' => 'Notification processed']);
@@ -94,24 +108,39 @@ class OrderController extends Controller
 
     public function paymentSuccess(Request $request)
     {
+        // Ambil data dari query string
         $orderId = $request->input('order_id'); // Format: "13-1735098136"
         $statusCode = $request->input('status_code');
         $transactionStatus = $request->input('transaction_status');
-
+    
+        // Ambil ID order asli
         $orderIdParts = explode('-', $orderId);
-        $order = Order::find($orderIdParts[0]);
-
+        $order = Order::find($orderIdParts[0]); // Ambil ID sebelum tanda "-"
+    
+        // Validasi order
         if (!$order) {
             return redirect()->route('user.dashboard')->with('error', 'Order tidak ditemukan!');
         }
-
+    
+        // Update status pembayaran (opsional)
         if ($transactionStatus === 'capture' || $transactionStatus === 'settlement') {
-            $order->status = 'paid'; // Atur status ke 'paid'
+            $order->status = 'paid';
             $order->save();
+    
+            // Kurangi jumlah available_tickets pada event terkait
+            $event = $order->event;
+            if ($event->available_tickets >= $order->quantity) {
+                $event->available_tickets -= $order->quantity;
+                $event->save();
+            } else {
+                return redirect()->route('user.dashboard')->with('error', 'Tiket sudah habis!');
+            }
         }
-
+    
+        // Tampilkan halaman sukses
         return view('user.order.success', compact('order', 'transactionStatus', 'statusCode'));
     }
+    
 
 
 

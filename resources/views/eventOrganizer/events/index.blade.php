@@ -28,6 +28,7 @@
                     <th>Lokasi</th>
                     <th>Harga</th>
                     <th>Kapasitas</th>
+                    <th>Sisa</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -45,6 +46,7 @@
                         <td>{{ $event->location }}</td>
                         <td>Rp {{ number_format($event->price, 0, ',', '.') }}</td>
                         <td>{{ $event->capacity }}</td>
+                        <td>{{ $event->available_tickets }}</td>
                         <td>
                             <!-- Tombol Edit -->
                             <a href="{{ route('eventOrganizer.events.edit', $event->id) }}" class="btn btn-sm btn-warning">

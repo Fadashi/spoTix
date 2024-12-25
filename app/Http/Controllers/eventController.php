@@ -61,7 +61,8 @@ class EventController extends Controller
         }
         
         $validated['user_id'] = Auth::id();
-
+        $validated['available_tickets'] = $validated['capacity'];
+        
         Event::create($validated);
 
         return redirect()->route('eventOrganizer.events.index')->with('success', 'Event berhasil dibuat!');

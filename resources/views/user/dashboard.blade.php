@@ -56,33 +56,33 @@
                         @foreach ($eventsChunk as $event)
                             <div class="col">
                                 <a href="{{ route('user.show', $event->id) }}" class="text-decoration-none text-dark">
-                                <div class="card event-card shadow-sm">
-                                    <img 
-                                        src="{{ asset($event->thumbnail ?? 'https://via.placeholder.com/300x200') }}" 
-                                        class="card-img-top" 
-                                        alt="{{ $event->name }}"
-                                    >
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $event->name }}</h5>
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                                            <span>{{ $event->location }}</span>
-                                        </div>
-                                        <div class="d-flex align-items-center mt-2">
-                                            <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                                            <span>{{ \Carbon\Carbon::parse($event->date)->format('d F Y') }}</span>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                            <span class="fw-bold text-orange">Rp {{ number_format($event->price, 0, ',', '.') }}</span>
-                                            @if ($event->is_sold_out)
-                                                <span class="badge bg-danger">Sold Out</span>
-                                            @else
-                                                <span class="badge bg-success">Available</span>
-                                            @endif
+                                    <div class="card event-card shadow-sm">
+                                        <img 
+                                            src="{{ asset($event->thumbnail ?? 'https://via.placeholder.com/300x200') }}" 
+                                            class="card-img-top" 
+                                            alt="{{ $event->name }}"
+                                        >
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $event->name }}</h5>
+                                            <div class="d-flex align-items-center">
+                                                <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
+                                                <span>{{ $event->location }}</span>
+                                            </div>
+                                            <div class="d-flex align-items-center mt-2">
+                                                <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
+                                                <span>{{ \Carbon\Carbon::parse($event->date)->format('d F Y') }}</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                                <span class="fw-bold text-orange">Rp {{ number_format($event->price, 0, ',', '.') }}</span>
+                                                @if ($event->is_sold_out)
+                                                    <span class="badge bg-danger">Sold Out</span>
+                                                @else
+                                                    <span class="badge bg-success">Available</span>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
                             </div>
                         @endforeach
                     </div>
@@ -101,6 +101,7 @@
         </button>
     </div>
 </div>
+
 
 
 
@@ -242,9 +243,11 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             <span class="fw-bold text-orange">Rp {{ number_format($event->price, 0, ',', '.') }}</span>
-                            <span class="badge {{ $event->capacity > 0 ? 'bg-success' : 'bg-danger' }}">
-                                {{ $event->capacity > 0 ? 'Available' : 'Sold Out' }}
-                            </span>
+                            @if ($event->is_sold_out)
+                                <span class="badge bg-danger">Sold Out</span>
+                            @else
+                                <span class="badge bg-success">Available</span>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -19,10 +19,16 @@ class Event extends Model
         'price',
         'capacity',
         'user_id',
+        'available_tickets',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getIsSoldOutAttribute()
+    {
+        return $this->available_tickets <= 0;
     }
 }
