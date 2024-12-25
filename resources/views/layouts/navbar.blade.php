@@ -45,7 +45,7 @@
                 <ul class="dropdown-menu dropdown-menu-end shadow-sm" style="min-width: 220px;">
                     <li class="dropdown-header text-muted small">Pengaturan Akun</li>
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
+                        <a class="dropdown-item d-flex align-items-center" href="{{ route('profile.edit') }}">
                             <i class="bi bi-pencil-square me-2 text-primary"></i>Edit Profil
                         </a>
                     </li>

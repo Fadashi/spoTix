@@ -31,11 +31,11 @@ Route::get('/admin/dashboard', [AdminController::class, 'index'])
     ->middleware(['auth:admin'])
     ->name('admin.dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     //dashboard admin
@@ -58,6 +58,9 @@ Route::prefix('eventOrganizer')->middleware(['auth', 'eventOrganizer'])->group(f
 Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
     //dashboard user
     Route::get('/dashboard',[UserController::class,'index'])->name('user.dashboard');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/search', [EventController::class, 'search'])->name('events.search');
     Route::get('/events/{id}', [EventController::class, 'show_event'])->name('user.show');
     Route::post('/order/store', [OrderController::class, 'store'])->name('user.order.store');
