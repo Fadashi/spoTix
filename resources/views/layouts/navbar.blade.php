@@ -46,7 +46,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
+                        <a class="dropdown-item d-flex align-items-center" href="{{ route('user.myTickets') }}">
                             <i class="bi bi-ticket-perforated me-2 text-success"></i>Tiket Saya
                         </a>
                     </li>

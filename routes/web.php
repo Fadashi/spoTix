@@ -66,6 +66,8 @@ Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
     Route::get('/payment/success', [OrderController::class, 'paymentSuccess'])->name('payment.success');
     Route::get('/payment/error', [OrderController::class, 'paymentError'])->name('payment.error');
     Route::get('/payment/cancel', [OrderController::class, 'paymentCancel'])->name('payment.cancel');
+    Route::get('/my-tickets', [OrderController::class, 'myTickets'])->name('user.myTickets');
+    Route::get('/tickets/{id}/detail', [OrderController::class, 'ticketDetail'])->name('user.ticketDetail');
 });
 
 Route::get('/choose-register', function () {

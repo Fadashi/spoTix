@@ -153,4 +153,26 @@ class OrderController extends Controller
     {
         return view('user.order.cancel');
     }
+
+    public function myTickets()
+    {
+        $userId = Auth::id();
+        $orders = Order::with('event')
+            ->where('user_id', $userId)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('user.myTickets', compact('orders'));
+    }
+
+    public function ticketDetail($id)
+    {
+        $order = Order::with('event')->where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+    
+        if ($order->status != 'paid') {
+            return redirect()->route('user.myTickets')->with('error', 'Tiket belum dibayar.');
+        }
+    
+        return view('user.ticketDetail', compact('order'));
+    }
 }
