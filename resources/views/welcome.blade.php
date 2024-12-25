@@ -54,32 +54,34 @@
                     <div class="row row-cols-1 row-cols-md-4 g-4">
                         @foreach ($eventsChunk as $event)
                             <div class="col">
-                                <div class="card event-card shadow-sm">
-                                    <img 
-                                        src="{{ asset($event->thumbnail ?? 'https://via.placeholder.com/300x200') }}" 
-                                        class="card-img-top" 
-                                        alt="{{ $event->name }}"
-                                    >
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $event->name }}</h5>
-                                        <div class="d-flex align-items-center">
-                                            <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                                            <span>{{ $event->location }}</span>
-                                        </div>
-                                        <div class="d-flex align-items-center mt-2">
-                                            <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                                            <span>{{ \Carbon\Carbon::parse($event->date)->format('d F Y') }}</span>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                            <span class="fw-bold text-orange">Rp {{ number_format($event->price, 0, ',', '.') }}</span>
-                                            @if ($event->is_sold_out)
-                                                <span class="badge bg-danger">Sold Out</span>
-                                            @else
-                                                <span class="badge bg-success">Available</span>
-                                            @endif
+                                <a href="{{ route('show-event', $event->id) }}" class="text-decoration-none text-dark">
+                                    <div class="card event-card shadow-sm">
+                                        <img 
+                                            src="{{ asset($event->thumbnail ?? 'https://via.placeholder.com/300x200') }}" 
+                                            class="card-img-top" 
+                                            alt="{{ $event->name }}"
+                                        >
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $event->name }}</h5>
+                                            <div class="d-flex align-items-center">
+                                                <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
+                                                <span>{{ $event->location }}</span>
+                                            </div>
+                                            <div class="d-flex align-items-center mt-2">
+                                                <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
+                                                <span>{{ \Carbon\Carbon::parse($event->date)->format('d F Y') }}</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                                <span class="fw-bold text-orange">Rp {{ number_format($event->price, 0, ',', '.') }}</span>
+                                                @if ($event->is_sold_out)
+                                                    <span class="badge bg-danger">Sold Out</span>
+                                                @else
+                                                    <span class="badge bg-success">Available</span>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         @endforeach
                     </div>
@@ -219,30 +221,32 @@
     <div class="row row-cols-1 row-cols-md-4 g-4">
         @forelse ($allEvents as $event)
             <div class="col">
-                <div class="card event-card shadow-sm">
-                    <img 
-                        src="{{ asset($event->thumbnail ?? 'https://via.placeholder.com/300x200') }}" 
-                        class="card-img-top" 
-                        alt="{{ $event->name }}"
-                    >
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $event->name }}</h5>
-                        <div class="d-flex align-items-center">
-                            <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                            <span>{{ $event->location }}</span>
-                        </div>
-                        <div class="d-flex align-items-center mt-2">
-                            <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                            <span>{{ \Carbon\Carbon::parse($event->date)->format('d F Y') }}</span>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <span class="fw-bold text-orange">Rp {{ number_format($event->price, 0, ',', '.') }}</span>
-                            <span class="badge {{ $event->capacity > 0 ? 'bg-success' : 'bg-danger' }}">
-                                {{ $event->capacity > 0 ? 'Available' : 'Sold Out' }}
-                            </span>
+                <a href="{{ route('show-event', $event->id) }}" class="text-decoration-none text-dark">
+                    <div class="card event-card shadow-sm">
+                        <img 
+                            src="{{ asset($event->thumbnail ?? 'https://via.placeholder.com/300x200') }}" 
+                            class="card-img-top" 
+                            alt="{{ $event->name }}"
+                        >
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $event->name }}</h5>
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
+                                <span>{{ $event->location }}</span>
+                            </div>
+                            <div class="d-flex align-items-center mt-2">
+                                <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
+                                <span>{{ \Carbon\Carbon::parse($event->date)->format('d F Y') }}</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="fw-bold text-orange">Rp {{ number_format($event->price, 0, ',', '.') }}</span>
+                                <span class="badge {{ $event->capacity > 0 ? 'bg-success' : 'bg-danger' }}">
+                                    {{ $event->capacity > 0 ? 'Available' : 'Sold Out' }}
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         @empty
             <p class="text-center">Belum ada event yang tersedia.</p>

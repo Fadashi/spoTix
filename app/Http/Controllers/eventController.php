@@ -28,6 +28,12 @@ class EventController extends Controller
         return view('user.show', compact('event'));
     }
 
+    public function event($id)
+    {
+        $event = Event::findOrFail($id); // Atau gunakan query yang sesuai
+        return view('show-event', compact('event'));
+    }
+
     /**
      * Show the form for creating a new event.
      */
