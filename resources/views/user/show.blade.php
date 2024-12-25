@@ -5,6 +5,15 @@
 @section('content')
 <div class="container my-5">
     
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ route('user.dashboard') }}">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $event->name }}</li>
+        </ol>
+    </nav>
+
     <h2 class="mb-3">{{ $event->name }}</h2>
     <p><i class="bi bi-geo-alt-fill text-secondary"></i> {{ $event->location }}</p>
 

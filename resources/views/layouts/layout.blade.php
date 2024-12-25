@@ -243,6 +243,24 @@
             background-size: 20px;
         }
 
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: #f8f9fa; /* Warna latar belakang */
+            padding: 10px 15px; /* Padding */
+            border-radius: 5px; /* Sudut melengkung */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bayangan */
+        }
+
+        .breadcrumb-item a {
+            color: #001f54; /* Warna link */
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: bold;
+        }
+
+        .breadcrumb-item.active {
+            color: #6c757d; /* Warna untuk item aktif */
+        }
     </style>
 </head>
 
