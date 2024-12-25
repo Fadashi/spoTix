@@ -34,8 +34,7 @@
                 <p>Harga: <strong>Rp {{ number_format($event->price, 0, ',', '.') }}</strong></p>
                 
                 <!-- Form Pemesanan -->
-                {{-- <form method="POST" action="{{ route('order.store') }}"> --}}
-                    <form>
+                <form method="POST" action="{{ route('user.order.store') }}">
                         @csrf
                         <input type="hidden" name="event_id" value="{{ $event->id }}">
                         <div class="d-flex align-items-center mb-3">

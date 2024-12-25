@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\eventController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\EventOrganizerController;
 
 Route::get('/', function () {
@@ -55,6 +56,13 @@ Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
     //dashboard user
     Route::get('/dashboard',[UserController::class,'index'])->name('user.dashboard');
     Route::get('/events/{id}', [EventController::class, 'show_event'])->name('user.show');
+    Route::post('/order/store', [OrderController::class, 'store'])->name('user.order.store');
+    Route::get('/order/confirmation/{id}', [OrderController::class, 'confirmation'])->name('user.order.confirmation');
+    Route::post('/order/pay', [OrderController::class, 'pay'])->name('user.order.pay');
+    Route::post('/payment/notification', [OrderController::class, 'notification'])->name('payment.notification');
+    Route::get('/payment/success', [OrderController::class, 'paymentSuccess'])->name('payment.success');
+    Route::get('/payment/error', [OrderController::class, 'paymentError'])->name('payment.error');
+    Route::get('/payment/cancel', [OrderController::class, 'paymentCancel'])->name('payment.cancel');
 });
 
 Route::get('/choose-register', function () {
