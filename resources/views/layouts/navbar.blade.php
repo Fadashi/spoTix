@@ -3,9 +3,13 @@
     <div class="container navbar-container">
         <!-- Logo -->
         @if (Auth::check() && Auth::user()->role == 'user')
-        <a class="navbar-brand fw-bold" href={{ route('user.dashboard') }}>spoTix</a>
+        <a class="navbar-brand fw-bold" href={{ route('user.dashboard') }}>
+            <img src="{{ asset('logo/logo-white.svg') }}" alt="Logo" style="height: 30px;">
+        </a>
         @else
-        <a class="navbar-brand fw-bold" href=#>spoTix</a>
+        <a class="navbar-brand fw-bold" href=#>
+            <img src="{{ asset('logo/logo-white.svg') }}" alt="Logo" style="height: 30px;">
+        </a>
         @endif
 
         <!-- Toggler for mobile -->
@@ -64,10 +68,10 @@
                 </ul>
             </div>
                 @else
-                <a href="{{ route('login') }}" class="btn btn-outline-light d-flex align-items-center me-2">
+                <a href="{{ route('login') }}" class="btn btn-outline-light d-flex align-items-center me-2 fw-bold">
                     <i class="bi bi-box-arrow-in-right me-1"></i>Masuk
                 </a>
-                <a href="{{ route('chooseRegister') }}" class="btn btn-light text-dark d-flex align-items-center">
+                <a href="{{ route('chooseRegister') }}" class="btn btn-light text-dark d-flex align-items-center fw-bold">
                     <i class="bi bi-person-plus me-1"></i>Daftar
                 </a>
                 @endif

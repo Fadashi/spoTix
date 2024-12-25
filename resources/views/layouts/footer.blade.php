@@ -1,5 +1,6 @@
 <footer class="footer">
     <div class="container">
+        <img src="{{ asset('logo/logo-white.svg') }}" alt="Logo" style="height: 30px;">
         <p>&copy; 2024 spoTix. All rights reserved.</p>
         <div class="d-flex justify-content-center">
             <a href="#" class="text-light me-3">

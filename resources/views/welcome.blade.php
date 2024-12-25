@@ -5,7 +5,7 @@
 <!-- Hero Section / Banner Slider -->
 <div class="container mt-5">
     <!-- Carousel Section -->
-    <div id="customCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div id="customCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
         <!-- Carousel Indicators -->
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -17,28 +17,28 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="custom-slide d-flex align-items-center justify-content-center">
-                    <h2 class="text-white">Selamat Datang di SpoTix!</h2>
+                    <h2 class="text-white fw-bold">Selamat Datang di SpoTix!</h2>
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="custom-slide d-flex align-items-center justify-content-center">
-                    <h2 class="text-white">Temukan Event yang Menarik</h2>
+                    <h2 class="text-white fw-bold">Temukan Event yang Menarik</h2>
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="custom-slide d-flex align-items-center justify-content-center">
-                    <h2 class="text-white">Dapatkan Tiket dengan Mudah!</h2>
+                    <h2 class="text-white fw-bold">Dapatkan Tiket dengan Mudah!</h2>
                 </div>
             </div>
         </div>
 
         <!-- Carousel Controls -->
         <button class="carousel-control-prev" type="button" data-bs-target="#customCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <i class="bi bi-arrow-left-circle-fill fs-1"></i>
             <span class="visually-hidden">Previous</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#customCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <i class="bi bi-arrow-right-circle-fill fs-1"></i>
             <span class="visually-hidden">Next</span>
         </button>
     </div>
@@ -62,7 +62,7 @@
                                             alt="{{ $event->name }}"
                                         >
                                         <div class="card-body">
-                                            <h5 class="card-title">{{ $event->name }}</h5>
+                                            <h5 class="card-title fw-bold">{{ $event->name }}</h5>
                                             <div class="d-flex align-items-center">
                                                 <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
                                                 <span>{{ $event->location }}</span>
@@ -105,8 +105,8 @@
 
 <!-- Rekomendasi Event Slider -->
 <div class="container my-5">
-    <div class="rekomendasi-event p-5 rounded-3" style="background: linear-gradient(135deg, #2c3e50, #34495e); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-        <h3 class="section-title text-white mb-4">Rekomendasi Event</h3>
+    <div class="rekomendasi-event p-3 rounded-3" style="background: linear-gradient(135deg, #e9e9e9, #e9e9ff); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <h3 class="section-title mb-4">Rekomendasi Event</h3>
         <div id="rekomendasiEventCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 @foreach ($recommendedEvents->chunk(4) as $index => $chunk)
@@ -114,11 +114,11 @@
                         <div class="row row-cols-1 row-cols-md-4 g-4">
                             @foreach ($chunk as $event)
                                 <div class="col">
-                                    <a href="{{ route('user.show', $event->id) }}" class="text-decoration-none text-dark">
+                                    <a href="{{ route('show-event', $event->id) }}" class="text-decoration-none text-dark">
                                     <div class="card event-card shadow-lg border-0">
                                         <img src="{{ asset($event->thumbnail ?? 'https://via.placeholder.com/300x200') }}" class="card-img-top rounded-3" alt="{{ $event->name }}">
                                         <div class="card-body">
-                                            <h5 class="card-title">{{ $event->name }}</h5>
+                                            <h5 class="card-title fw-bold">{{ $event->name }}</h5>
                                             <div class="d-flex align-items-center">
                                                 <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
                                                 <span>{{ $event->location }}</span>
@@ -171,7 +171,7 @@
                             alt="{{ $event->name }}"
                         >
                         <div class="card-body">
-                            <h5 class="card-title">{{ $event->name }}</h5>
+                            <h5 class="card-title fw-bold">{{ $event->name }}</h5>
                             <div class="d-flex align-items-center">
                                 <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
                                 <span>{{ $event->location }}</span>
