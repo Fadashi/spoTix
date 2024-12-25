@@ -109,96 +109,38 @@
         <h3 class="section-title text-white mb-4">Rekomendasi Event</h3>
         <div id="rekomendasiEventCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <!-- Slider Item 1 -->
-                <div class="carousel-item active">
-                    <div class="row row-cols-1 row-cols-md-4 g-4">
-                        <div class="col">
-                            <div class="card event-card shadow-lg border-0">
-                                <img src="https://via.placeholder.com/300x200" class="card-img-top rounded-3" alt="Event Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Startup Meet</h5>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                                        <span>Jakarta</span>
+                @foreach ($recommendedEvents->chunk(4) as $index => $chunk)
+                    <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                        <div class="row row-cols-1 row-cols-md-4 g-4">
+                            @foreach ($chunk as $event)
+                                <div class="col">
+                                    <a href="{{ route('user.show', $event->id) }}" class="text-decoration-none text-dark">
+                                    <div class="card event-card shadow-lg border-0">
+                                        <img src="{{ asset($event->thumbnail ?? 'https://via.placeholder.com/300x200') }}" class="card-img-top rounded-3" alt="{{ $event->name }}">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $event->name }}</h5>
+                                            <div class="d-flex align-items-center">
+                                                <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
+                                                <span>{{ $event->location }}</span>
+                                            </div>
+                                            <div class="d-flex align-items-center mt-2">
+                                                <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
+                                                <span>{{ \Carbon\Carbon::parse($event->date)->format('d F Y') }}</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                                <span class="fw-bold text-orange">Rp {{ number_format($event->price, 0, ',', '.') }}</span>
+                                                <span class="badge bg-{{ $event->available_tickets > 0 ? 'success' : 'danger' }}">
+                                                    {{ $event->available_tickets > 0 ? 'Available' : 'Sold Out' }}
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="d-flex align-items-center mt-2">
-                                        <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                                        <span>15 Januari 2025</span>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <span class="fw-bold text-orange">Rp 25.000</span>
-                                        <span class="badge bg-success">Available</span>
-                                    </div>
+                                    </a>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
-                        <!-- Repeat for other events -->
-                        <div class="col">
-                            <div class="card event-card shadow-lg border-0">
-                                <img src="https://via.placeholder.com/300x200" class="card-img-top rounded-3" alt="Event Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Startup Meet</h5>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                                        <span>Jakarta</span>
-                                    </div>
-                                    <div class="d-flex align-items-center mt-2">
-                                        <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                                        <span>15 Januari 2025</span>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <span class="fw-bold text-orange">Rp 25.000</span>
-                                        <span class="badge bg-success">Available</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Repeat for other events -->
-                        <div class="col">
-                            <div class="card event-card shadow-lg border-0">
-                                <img src="https://via.placeholder.com/300x200" class="card-img-top rounded-3" alt="Event Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Startup Meet</h5>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                                        <span>Jakarta</span>
-                                    </div>
-                                    <div class="d-flex align-items-center mt-2">
-                                        <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                                        <span>15 Januari 2025</span>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <span class="fw-bold text-orange">Rp 25.000</span>
-                                        <span class="badge bg-success">Available</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Repeat for other events -->
-                        <div class="col">
-                            <div class="card event-card shadow-lg border-0">
-                                <img src="https://via.placeholder.com/300x200" class="card-img-top rounded-3" alt="Event Image">
-                                <div class="card-body">
-                                    <h5 class="card-title">Startup Meet</h5>
-                                    <div class="d-flex align-items-center">
-                                        <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
-                                        <span>Jakarta</span>
-                                    </div>
-                                    <div class="d-flex align-items-center mt-2">
-                                        <i class="bi bi-calendar-event-fill text-secondary me-2"></i>
-                                        <span>15 Januari 2025</span>
-                                    </div>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <span class="fw-bold text-orange">Rp 25.000</span>
-                                        <span class="badge bg-success">Available</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Repeat for other events -->
                     </div>
-                    <p class="text-light mt-4 text-center">Event rekomendasi dari SpoTix, dijamin bikin momen kamu lebih seru!</p>
-                </div>
+                @endforeach
             </div>
 
             <!-- Carousel controls -->
