@@ -128,7 +128,9 @@
     <div class="auth-background"></div>
     <div id="auth">
         <div class="login-container">
-            <div class="auth-logo">spoTix</div>
+            <div class="auth-logo">
+                <img src="{{ asset('logo/logo-white.svg') }}" alt="Logo" style="height: 30px;">
+            </div>
             <h1 class="auth-title">Register as EO</h1>
             <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
 
