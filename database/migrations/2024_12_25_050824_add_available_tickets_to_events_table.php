@@ -12,14 +12,14 @@ return new class extends Migration
     public function up()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->integer('available_tickets')->default(0); // Default 0
+            $table->integer('total_tickets')->default(0); // Default 0
         });
     }
 
     public function down()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->dropColumn('available_tickets');
+            $table->dropColumn('total_tickets');
         });
     }
 };
