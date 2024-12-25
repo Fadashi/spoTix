@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\eventController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\EventOrganizerController;
+use App\Http\Middleware\EventOrganizer;
 
 Route::get('/', function () {
     // Jika pengguna sudah login, arahkan ke dashboard berdasarkan role
@@ -50,6 +51,8 @@ Route::prefix('eventOrganizer')->middleware(['auth', 'eventOrganizer'])->group(f
     Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('eventOrganizer.events.edit'); // Halaman edit event
     Route::put('/events/{event}', [EventController::class, 'update'])->name('eventOrganizer.events.update'); // Update event
     Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('eventOrganizer.events.destroy'); // Hapus event
+    Route::get('/events/reports', [EventOrganizerController::class, 'reports'])->name('eventOrganizer.events.reports');
+    Route::get('/event/reports/{id}', [EventOrganizerController::class, 'show'])->name('eventOrganizer.events.show');
 });
 
 Route::prefix('user')->middleware(['auth', 'user'])->group(function () {

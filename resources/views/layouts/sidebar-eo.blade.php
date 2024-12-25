@@ -96,7 +96,7 @@
             <a class="nav-link" href="{{ route('eventOrganizer.events.index') }}">
                 <i class="bi bi-calendar-event"></i> Event
             </a>
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ route('eventOrganizer.events.reports') }}">
                 <i class="bi bi-file-bar-graph"></i> Report
             </a>
         </nav>

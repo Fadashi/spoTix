@@ -12,7 +12,7 @@
             <div class="card-body text-center">
                 <i class="bi bi-bar-chart" style="font-size: 24px; color: #6c757d;"></i>
                 <h5 class="mt-3">Keuntungan</h5>
-                <p>Rp 1.000.000</p>
+                <p>Rp {{ number_format($totalProfit, 0, ',', '.') }}</p>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
             <div class="card-body text-center">
                 <i class="bi bi-arrow-repeat" style="font-size: 24px; color: #6c757d;"></i>
                 <h5 class="mt-3">Refunds</h5>
-                <p>Rp 5.000.000</p>
+                <p>Rp {{ number_format($totalRefund, 0, ',', '.') }}</p>
             </div>
         </div>
     </div>
@@ -30,7 +30,7 @@
             <div class="card-body text-center">
                 <i class="bi bi-basket-fill" style="font-size: 24px; color: #6c757d;"></i>
                 <h5 class="mt-3">Sold Today</h5>
-                <p>220</p>
+                <p>{{ $soldToday }}</p>
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@
             <div class="card-body text-center">
                 <i class="bi bi-cart-check" style="font-size: 24px; color: #6c757d;"></i>
                 <h5 class="mt-3">Orders</h5>
-                <p>30.000</p>
+                <p>{{ $totalOrders }}</p>
             </div>
         </div>
     </div>
@@ -48,7 +48,7 @@
             <div class="card-body text-center">
                 <i class="bi bi-ticket-perforated-fill" style="font-size: 24px; color: #6c757d;"></i>
                 <h5 class="mt-3">Ticket Sold</h5>
-                <p>5.000</p>
+                <p>{{ $totalTicketsSold }}</p>
             </div>
         </div>
     </div>
@@ -57,7 +57,7 @@
             <div class="card-body text-center">
                 <i class="bi bi-people-fill" style="font-size: 24px; color: #6c757d;"></i>
                 <h5 class="mt-3">Customers</h5>
-                <p>1.540</p>
+                <p>{{ $totalCustomers }}</p>
             </div>
         </div>
     </div>
@@ -77,10 +77,10 @@
     const chart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            labels: @json(array_keys($monthlyProfits->toArray())),
             datasets: [{
                 label: 'Keuntungan',
-                data: [250, 500, 750, 200, 900, 700],
+                data: @json(array_values($monthlyProfits->toArray())),
                 backgroundColor: 'rgba(0, 31, 84, 0.5)',
                 borderColor: '#001f54',
                 borderWidth: 2

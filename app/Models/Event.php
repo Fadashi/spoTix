@@ -27,6 +27,11 @@ class Event extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
     public function getIsSoldOutAttribute()
     {
         return $this->available_tickets <= 0;
