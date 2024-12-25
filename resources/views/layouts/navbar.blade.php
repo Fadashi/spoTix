@@ -19,8 +19,8 @@
 
         <div class="collapse navbar-collapse" id="navbarContent">
             <!-- Search Bar -->
-            <form class="d-flex align-items-center me-auto ms-3" style="max-width: 400px; width: 100%;">
-                <input class="form-control" type="search" placeholder="Cari Event Di sini" aria-label="Search">
+            <form class="d-flex align-items-center me-auto ms-3" style="max-width: 400px; width: 100%;" method="GET" action="{{ route('events.search') }}">
+                <input class="form-control" type="search" name="query" placeholder="Cari Event Di sini" aria-label="Search">
             </form>
 
             <!-- Navbar Links -->

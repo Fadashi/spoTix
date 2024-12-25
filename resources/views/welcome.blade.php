@@ -115,7 +115,7 @@
                             @foreach ($chunk as $event)
                                 <div class="col">
                                     <a href="{{ route('show-event', $event->id) }}" class="text-decoration-none text-dark">
-                                    <div class="card event-card shadow-lg border-0">
+                                    <div class="card event-card border-0">
                                         <img src="{{ asset($event->thumbnail ?? 'https://via.placeholder.com/300x200') }}" class="card-img-top rounded-3" alt="{{ $event->name }}">
                                         <div class="card-body">
                                             <h5 class="card-title fw-bold">{{ $event->name }}</h5>

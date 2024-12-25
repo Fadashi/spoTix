@@ -34,6 +34,28 @@ class EventController extends Controller
         return view('show-event', compact('event'));
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $events = Event::where('name', 'LIKE', "%{$query}%")
+                    ->orWhere('location', 'LIKE', "%{$query}%")
+                    ->orWhere('category', 'LIKE', "%{$query}%")
+                    ->get();
+
+        return view('user.search', compact('events', 'query'));
+    }
+
+    public function searchTicket(Request $request)
+    {
+        $query = $request->input('query');
+        $events = Event::where('name', 'LIKE', "%{$query}%")
+                    ->orWhere('location', 'LIKE', "%{$query}%")
+                    ->orWhere('category', 'LIKE', "%{$query}%")
+                    ->get();
+
+        return view('search', compact('events', 'query'));
+    }
+
     /**
      * Show the form for creating a new event.
      */

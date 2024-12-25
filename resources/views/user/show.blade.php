@@ -14,7 +14,7 @@
         </ol>
     </nav>
 
-    <h2 class="mb-3">{{ $event->name }}</h2>
+    <h2 class="section-title mb-3 fw-bold">{{ $event->name }}</h2>
     <p><i class="bi bi-geo-alt-fill text-secondary"></i> {{ $event->location }}</p>
 
     <div class="row">
@@ -30,10 +30,10 @@
         
         <!-- Detail Event -->
         <div class="col-md-6">
-            <h5 class="mb-3">Tentang Event Ini</h5>
+            <h5 class="mb-3 fw-bold">Tentang Event Ini</h5>
             <p>{{ $event->description }}</p>
             
-            <h5 class="mb-3">Pilihan Tiket</h5>
+            <h5 class="mb-3 fw-bold">Pilihan Tiket</h5>
             <div class="card p-3">
                 <h5>{{ $event->title }}</h5>
                 <p><i class="bi bi-calendar-event-fill text-secondary"></i> {{ \Carbon\Carbon::parse($event->date)->format('l, d F Y') }}</p>

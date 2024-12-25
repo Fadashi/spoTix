@@ -16,6 +16,9 @@ Route::middleware('guest')->group(function () {
     Route::get('events/{id}', [EventController::class, 'event'])
         ->name('show-event');
 
+    Route::get('/search', [EventController::class, 'searchTicket'])
+    ->name('events.search');
+
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 

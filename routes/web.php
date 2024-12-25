@@ -58,6 +58,7 @@ Route::prefix('eventOrganizer')->middleware(['auth', 'eventOrganizer'])->group(f
 Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
     //dashboard user
     Route::get('/dashboard',[UserController::class,'index'])->name('user.dashboard');
+    Route::get('/search', [EventController::class, 'search'])->name('events.search');
     Route::get('/events/{id}', [EventController::class, 'show_event'])->name('user.show');
     Route::post('/order/store', [OrderController::class, 'store'])->name('user.order.store');
     Route::get('/order/confirmation/{id}', [OrderController::class, 'confirmation'])->name('user.order.confirmation');
@@ -73,5 +74,7 @@ Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
 Route::get('/choose-register', function () {
     return view('auth.chooseRegister');
 })->name('chooseRegister');
+
+
 
 require __DIR__.'/auth.php';
