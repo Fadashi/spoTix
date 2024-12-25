@@ -22,13 +22,13 @@
                     <th>#</th>
                     <th>Thumbnail</th>
                     <th>Nama Event</th>
-                    <th>Deskripsi</th>
                     <th>Kategori</th>
                     <th>Tanggal</th>
                     <th>Lokasi</th>
                     <th>Harga</th>
                     <th>Kapasitas</th>
                     <th>Sisa</th>
+                    <th>Status</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -40,13 +40,17 @@
                             <img src="{{ asset($event->thumbnail) }}" alt="Thumbnail" class="img-thumbnail" style="width: 100px;">
                         </td>
                         <td>{{ $event->name }}</td>
-                        <td>{{ Str::limit($event->description, 50) }}</td>
                         <td>{{ $event->category }}</td>
                         <td>{{ \Carbon\Carbon::parse($event->date)->format('d M Y') }}</td>
                         <td>{{ $event->location }}</td>
                         <td>Rp {{ number_format($event->price, 0, ',', '.') }}</td>
                         <td>{{ $event->capacity }}</td>
                         <td>{{ $event->available_tickets }}</td>
+                        <td>
+                            <span class="badge bg-{{ $event->status == 'Upcoming' ? 'primary' : ($event->status == 'Ongoing' ? 'success' : 'secondary') }}">
+                                {{ ucfirst($event->status) }}
+                            </span>
+                        </td>
                         <td>
                             <!-- Tombol Edit -->
                             <a href="{{ route('eventOrganizer.events.edit', $event->id) }}" class="btn btn-sm btn-warning">

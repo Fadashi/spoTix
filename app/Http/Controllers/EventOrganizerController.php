@@ -91,15 +91,15 @@ class EventOrganizerController extends Controller
     {
         // Ambil data event berdasarkan ID
         $event = Event::with('orders', 'orders.user')->findOrFail($id);
-        $userId = Auth::id();
-        // Hitung data laporan
+    
+        // Hitung data laporan berdasarkan event yang sedang ditampilkan
         $ticketSold = $event->capacity - $event->available_tickets;
-        $totalOrders = Order::whereHas('event', fn($query) => $query->where('user_id', $userId))->count();
-        $totalCustomers = Order::whereHas('event', fn($query) => $query->where('user_id', $userId))
+        $totalOrders = $event->orders()->count(); // Total pesanan untuk event ini
+        $totalCustomers = $event->orders()
             ->distinct('user_id')
-            ->count('user_id');
-        $omzet = $ticketSold * $event->price;
-
+            ->count('user_id'); // Total pelanggan unik untuk event ini
+        $omzet = $ticketSold * $event->price; // Menghitung omzet
+    
         return view('eventOrganizer.events.show', compact('event', 'ticketSold', 'totalOrders', 'totalCustomers', 'omzet'));
     }
 

@@ -112,19 +112,16 @@
         <header>
             <h4>@yield('header-title', 'Dashboard')</h4>
             <div class="d-flex align-items-center">
-                <select class="form-select" style="width: auto;">
-                    <option selected>Semua Event</option>
-                    <option value="1">Event A</option>
-                    <option value="2">Event B</option>
-                </select>
-                <button class="btn btn-outline-dark">Pilih Tanggal</button>
+                
+                <span class="me-2">{{ Auth::user()->name ?? 'Guest' }}</span>
                 <i class="bi bi-person-circle ms-3" style="font-size: 24px;"></i>
             </div>
         </header>
-
+    
         <!-- Main Content -->
         @yield('content')
     </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     @stack('scripts')
 </body>

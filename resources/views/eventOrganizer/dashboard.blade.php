@@ -11,12 +11,12 @@
         <div class="card">
             <div class="card-body text-center">
                 <i class="bi bi-bar-chart" style="font-size: 24px; color: #6c757d;"></i>
-                <h5 class="mt-3">Keuntungan</h5>
+                <h5 class="mt-3">Omzet</h5>
                 <p>Rp {{ number_format($totalProfit, 0, ',', '.') }}</p>
             </div>
         </div>
     </div>
-    <div class="col-md-4 col-lg-2">
+    {{-- <div class="col-md-4 col-lg-2">
         <div class="card">
             <div class="card-body text-center">
                 <i class="bi bi-arrow-repeat" style="font-size: 24px; color: #6c757d;"></i>
@@ -24,7 +24,7 @@
                 <p>Rp {{ number_format($totalRefund, 0, ',', '.') }}</p>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="col-md-4 col-lg-2">
         <div class="card">
             <div class="card-body text-center">

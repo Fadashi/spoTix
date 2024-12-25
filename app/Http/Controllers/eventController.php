@@ -50,6 +50,7 @@ class EventController extends Controller
             'location' => 'required|string|max:255',
             'capacity' => 'required|integer|min:1',
             'price' => 'required|numeric|min:0',
+            'status' => 'required|string|in:Upcoming,Ongoing,Completed',
         ]);
 
         // Upload thumbnail
@@ -102,6 +103,7 @@ class EventController extends Controller
             'location' => 'required|string|max:255',
             'capacity' => 'required|integer|min:1',
             'price' => 'required|numeric|min:0',
+            'status' => 'required|string|in:Upcoming,Ongoing,Completed'
         ]);
 
         $event = Event::findOrFail($id);

@@ -45,7 +45,16 @@
         </div>
 
         <div class="mb-3">
-            <label for="capacity" class="form-label">Kapasitas Penonton</label>
+            <label for="status" class="form-label">Status</label>
+            <select name="status" id="status" class="form-select" required>
+                <option value="Upcoming">Upcoming</option>
+                <option value="Ongoing">Ongoing</option>
+                <option value="completed">Completed</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="capacity" class="form-label">Kapasitas Pengunjung</label>
             <input type="number" class="form-control" id="capacity" name="capacity" value="{{ old('capacity') }}" min="1" required>
         </div>
 

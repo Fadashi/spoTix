@@ -23,6 +23,7 @@
         <div class="col-md-3">
             <div class="card text-center">
                 <div class="card-body">
+                    <i class="bi bi-bar-chart" style="font-size: 24px; color: #6c757d;"></i>
                     <h5>Omzet</h5>
                     <p class="fw-bold">Rp {{ number_format($omzet, 0, ',', '.') }}</p>
                 </div>
@@ -31,6 +32,7 @@
         <div class="col-md-3">
             <div class="card text-center">
                 <div class="card-body">
+                    <i class="bi bi-ticket-perforated-fill" style="font-size: 24px; color: #6c757d;"></i>
                     <h5>Ticket Sold</h5>
                     <p class="fw-bold">{{ $ticketSold }}</p>
                 </div>
@@ -39,6 +41,7 @@
         <div class="col-md-3">
             <div class="card text-center">
                 <div class="card-body">
+                    <i class="bi bi-cart-check" style="font-size: 24px; color: #6c757d;"></i>
                     <h5>Orders</h5>
                     <p class="fw-bold">{{ $totalOrders }}</p>
                 </div>
@@ -47,6 +50,7 @@
         <div class="col-md-3">
             <div class="card text-center">
                 <div class="card-body">
+                    <i class="bi bi-people-fill" style="font-size: 24px; color: #6c757d;"></i>
                     <h5>Customers</h5>
                     <p class="fw-bold">{{ $totalCustomers }}</p>
                 </div>

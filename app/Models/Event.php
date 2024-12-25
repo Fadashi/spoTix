@@ -20,6 +20,7 @@ class Event extends Model
         'capacity',
         'user_id',
         'available_tickets',
+        'status',
     ];
 
     public function user()

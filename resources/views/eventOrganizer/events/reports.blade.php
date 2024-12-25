@@ -20,6 +20,9 @@
                         >
                         <div class="card-body" style="flex-grow: 1;">
                             <h5 class="card-title" style="font-size: 1.2rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ $event->name }}</h5>
+                            <span class="badge bg-{{ $event->status == 'Upcoming' ? 'primary' : ($event->status == 'Ongoing' ? 'success' : 'secondary') }}">
+                                {{ ucfirst($event->status) }}
+                            </span>
                             <div class="d-flex align-items-center mb-2">
                                 <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
                                 <span style="font-size: 0.9rem;">{{ $event->location }}</span>

@@ -64,6 +64,9 @@
                                         >
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $event->name }}</h5>
+                                            <span class="badge bg-{{ $event->status == 'Upcoming' ? 'primary' : ($event->status == 'Ongoing' ? 'success' : 'secondary') }}">
+                                                {{ ucfirst($event->status) }}
+                                            </span>
                                             <div class="d-flex align-items-center">
                                                 <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
                                                 <span>{{ $event->location }}</span>
@@ -233,6 +236,9 @@
                     >
                     <div class="card-body">
                         <h5 class="card-title">{{ $event->name }}</h5>
+                        <span class="badge bg-{{ $event->status == 'Upcoming' ? 'primary' : ($event->status == 'Ongoing' ? 'success' : 'secondary') }}">
+                            {{ ucfirst($event->status) }}
+                        </span>
                         <div class="d-flex align-items-center">
                             <i class="bi bi-geo-alt-fill text-secondary me-2"></i>
                             <span>{{ $event->location }}</span>
