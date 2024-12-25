@@ -2,7 +2,11 @@
 <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
     <div class="container navbar-container">
         <!-- Logo -->
-        <a class="navbar-brand fw-bold" href="#">spoTix</a>
+        @if (Auth::check() && Auth::user()->role == 'user')
+        <a class="navbar-brand fw-bold" href={{ route('user.dashboard') }}>spoTix</a>
+        @else
+        <a class="navbar-brand fw-bold" href=#>spoTix</a>
+        @endif
 
         <!-- Toggler for mobile -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">

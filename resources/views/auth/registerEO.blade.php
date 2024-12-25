@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register as EO</title>
+    <title>User Login - SpoTix</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -31,83 +31,95 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://via.placeholder.com/1920x1080');
+            background-image: url('https://via.placeholder.com/1920x1080'); /* Placeholder background */
             background-size: cover;
             background-position: center;
             z-index: 0;
             filter: blur(5px);
         }
-        .register-container {
+        .login-container {
             padding: 2rem;
             border-radius: 10px;
-            background-color: #001f54;
-            color: white;
+            background-color: #001f54; /* Match the navbar color */
+            color: white; /* Change text color to white for contrast */
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             position: relative;
             z-index: 1;
-            max-width: 700px;
-            width: 100%;
+            max-width: 700px; /* Set a max width for the card */
+            width: 100%; /* Make it responsive */
         }
         .auth-logo {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 2.5rem; /* Increase font size for logo */
             font-weight: bold;
-            color: white;
+            color: white; /* Logo color */
             margin-bottom: 1rem;
         }
         .auth-title {
             font-size: 2rem;
             margin-bottom: 1rem;
-            text-align: center;
+            text-align: center; /* Center the title */
         }
         .auth-subtitle {
             margin-bottom: 2rem;
-            text-align: center;
+            text-align: center; /* Center the subtitle */
         }
         .form-control-icon {
             position: absolute;
             left: 15px;
             top: 50%;
             transform: translateY(-50%);
-            color: #999;
-            font-size: 1.2rem;
-            pointer-events: none;
+            color: #999; /* Change icon color to gray */
+            font-size: 1.2rem; /* Increase icon size */
+            pointer-events: none; /* Prevent interaction with the icon */
         }
         .form-group {
             position: relative;
             margin-bottom: 1.5rem;
         }
         .form-control {
-            padding-left: 40px;
-            background-color: #ffffff;
-            color: #000;
+            padding-left: 40px; /* Ensure space for the icon */
+            background-color: #ffffff; /* Keep input background white */
+            color: #000; /* Input text color */
         }
         .form-control::placeholder {
-            color: #999;
-            opacity: 1;
+            color: #999; /* Placeholder color */
+            opacity: 1; /* Ensure placeholder is fully opaque */
         }
         .btn-primary {
-            background-color: #ffc107;
+            background-color: #ffc107; /* Change button color */
             border-color: #ffc107;
         }
         .btn-primary:hover {
-            background-color: #dda704;
+            background-color: #dda704; /* Darker shade for hover effect */
             color: white;
         }
         .text-gray-600 {
-            color: #ffffff;
+            color: #ffffff; /* Change text color to white */
         }
         .footer-links {
             margin-top: 1.5rem;
             text-align: center;
         }
         .footer-links a {
-            color: #ffc107;
+            color: #ffc107; /* Link color */
             text-decoration: none;
             transition: color 0.3s;
         }
         .footer-links a:hover {
-            color: #ffffff;
+            color: #ffffff; /* Change link color on hover */
+        }
+        .btn-secondary {
+            background-color: #0056b3; /* New color for the button */
+            border-color: #0056b3; /* Match border color */
+            color: white; /* Text color */
+            padding: 10px 20px; /* Padding for the button */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
+        }
+        .btn-secondary:hover {
+            background-color: #004494; /* Darker shade on hover */
+            border-color: #004494; /* Match border color */
         }
     </style>
 </head>
@@ -115,10 +127,10 @@
 <body>
     <div class="auth-background"></div>
     <div id="auth">
-        <div class="register-container">
+        <div class="login-container">
             <div class="auth-logo">spoTix</div>
             <h1 class="auth-title">Register as EO</h1>
-            <p class="auth-subtitle mb-5">Register with your EO details.</p>
+            <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
 
             <form method="POST" action="{{ route('registerEO') }}">
                 @csrf
@@ -146,14 +158,14 @@
                         <i class="bi bi-shield-lock"></i>
                     </div>
                 </div>
-                <button class="btn btn-primary btn-block btn-lg shadow-lg" style="width: 100%;">Register as EO</button>
+                <button class="btn btn-primary btn-block btn-lg shadow-lg" style="width: 100%;">Register</button>
             </form>
             <div class="footer-links">
-                <a href="{{ route('login') }}" class="text-light">Already registered?</a>
+                <a href="{{ route('loginEO') }}" class="text-light">Already registered?</a>
             </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
-</html> 
+</html>

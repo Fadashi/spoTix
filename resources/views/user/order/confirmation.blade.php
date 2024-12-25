@@ -9,7 +9,7 @@
     <!-- Detail Pesanan -->
     <div class="card p-4">
         <h5>Detail Pemesanan</h5>
-        <p><strong>Event:</strong> {{ $order->event->title }}</p>
+        <p><strong>Event:</strong> {{ $order->event->name }}</p>
         <p><strong>Jumlah Tiket:</strong> {{ $order->quantity }}</p>
         <p><strong>Total Harga:</strong> Rp {{ number_format($order->total_price, 0, ',', '.') }}</p>
     </div>
