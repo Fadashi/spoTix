@@ -63,7 +63,7 @@ Route::prefix('user')->middleware(['auth', 'user'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/search', [EventController::class, 'search'])->name('events.search');
     Route::get('/events/{id}', [EventController::class, 'show_event'])->name('user.show');
-    Route::post('/order/store', [OrderController::class, 'store'])->name('user.order.store');
+    Route::post('/order', [OrderController::class, 'store'])->name('user.order.store');
     Route::get('/order/confirmation/{id}', [OrderController::class, 'confirmation'])->name('user.order.confirmation');
     Route::post('/order/pay', [OrderController::class, 'pay'])->name('user.order.pay');
     Route::post('/payment/notification', [OrderController::class, 'notification'])->name('payment.notification');
@@ -78,6 +78,8 @@ Route::get('/choose-register', function () {
     return view('auth.chooseRegister');
 })->name('chooseRegister');
 
-
+Route::middleware(['auth', 'eventOrganizer'])->group(function () {
+    Route::resource('events', EventController::class);
+});
 
 require __DIR__.'/auth.php';
