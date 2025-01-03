@@ -74,10 +74,10 @@ class EventTest extends TestCase
 
     public function test_event_can_be_viewed(): void
     {
-        $user = User::factory()->create(['role' => 'eventOrganizer']);
+        $user = User::factory()->create(['role' => 'user']);
         $event = Event::factory()->create(['user_id' => $user->id]);
 
-        $response = $this->actingAs($user)->get("/events/{$event->id}");
+        $response = $this->actingAs($user)->get(route('user.show', ['id' => $event->id]));
 
         $response->assertStatus(200);
         $response->assertSee($event->name);
