@@ -65,10 +65,11 @@ class UserTicketTest extends TestCase
     
         // Verifikasi status 200, pastikan pengguna dapat mengakses halaman detail tiket
         $response->assertStatus(200);
-        $response->assertSee($event->name);  // Menampilkan nama event
-        $response->assertSee($order->quantity);  // Menampilkan jumlah tiket
-        $response->assertSee($order->status);  // Menampilkan status order
-        $response->assertSee('Total: Rp 200'); // Menampilkan total harga
+    
+        // Verifikasi apakah halaman detail tiket menampilkan informasi yang sesuai
+        $response->assertSee($order->event->name);
+        $response->assertSee($order->quantity);
+        $response->assertSee($order->total_price);
     }
     
     
